@@ -1,4 +1,4 @@
-sudo xbps-install -Sy \
+sudo xbps-install -Su && sudo xbps-install -Sy \
   libstdc++ libgcc ncurses readline \
   libX11 libxcb libXext libXrender libXft fontconfig freetype libxkbcommon \
   gtk+3 glib pango cairo gdk-pixbuf qt5 \
