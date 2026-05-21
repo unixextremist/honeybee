@@ -22,7 +22,7 @@ step() { echo -e "${magenta}==>${nc} $*"; }
 
 check_void() {
     if [[ ! -f /etc/os-release ]] || ! grep -q "void linux" /etc/os-release; then
-        die "this ain't void linux, chief. exiting."
+        die "this isn't void linux, exiting."
     fi
 }
 
@@ -53,9 +53,9 @@ sync_repos() {
 }
 
 update_system() {
-    info "updating system (yes, all 14 months of it)..."
+    info "updating system.."
     $sudo xbps-install -su || die "system update failed"
-    ok "system is fresh and current"
+    ok "system is current"
 }
 
 install_core() {
@@ -179,7 +179,7 @@ seat_turnstile_with_elogind() {
     enable_service "turnstiled"
     
     ok "turnstile + elogind configured"
-    warn "log out and back in. turnstile manages d-bus session — no dbus-run-session needed"
+    warn "log out and back in. turnstile manages d-bus session."
 }
 
 seat_turnstile_standalone() {
