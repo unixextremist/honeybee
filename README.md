@@ -20,11 +20,11 @@ archinstall after-install but for void linux. it handles the 14 month backlog of
 
 the script walks you through picking one of five session/seat stacks per the void linux handbook:
 
-1. **elogind** — full session management, auto XDG_RUNTIME_DIR, power control. best for: DEs, most wayland compositors, rootless xorg.
-2. **turnstile + elogind** — turnstile manages sessions, elogind handles rundir/power. best for: per-user services, d-bus without dbus-run-session.
-3. **turnstile** — standalone, seatd for seats, acpid for power. best for: minimal setups, wlroots compositors.
-4. **seatd** — minimal seat daemon only. best for: sway, dwl, river — you handle rundir + d-bus yourself.
-5. **manual** — no session manager, DIY XDG_RUNTIME_DIR. best for: purists who know what they're doing.
+1. **elogind** 
+2. **turnstile + elogind**
+3. **turnstile**
+4. **seatd** 
+5. **manual** 
 
 # who this is for
 
