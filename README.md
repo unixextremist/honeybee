@@ -1,12 +1,39 @@
 # honeybee
+
 a user-friendly hijacK? script for void linux.
 
 # what does it do?
 
-self explanatory as mentioned above, archinstall after-install but for void linux.
+archinstall after-install but for void linux. it handles the 14 month backlog of updates since the last image release, installs finnicky libraries that void does not ship by default (ex: libstdc++ which alacritty needs on older systems), sets up d-bus, xdg user directories, xdg runtime dir, and lets you pick a session/seat management stack.
 
-to be in more detail, it installs neccesary packages that are finnicky to figure out when erroring (ex libstdc++ which alacritty needs on older systems) that void does not have by default. (and the 14 month backlog of updates since the last image release)
+# what it installs
 
-# who this is for.
+- core libraries: libstdc++, libgcc, ncurses, readline, zlib, bzip2, xz, lz4, zstd, brotli, libpng, libjpeg-turbo, tiff, libwebp, icu-libs
+- graphics stack: libX11, libxcb, libXext, libXrender, libXft, fontconfig, freetype, libxkbcommon, mesa-dri
+- networking & crypto: libcurl, libressl, gnutls, ca-certificates
+- gui toolkits: gtk+3, glib, pango, cairo, gdk-pixbuf, qt5, pam, libcap
+- fonts: dejavu-fonts-ttf, liberation-fonts-ttf, terminus-font, noto-fonts-emoji
+- xdg tools: xdg-user-dirs, xdg-user-dirs-gtk, xdg-utils, xdg-desktop-portal, xdg-desktop-portal-gtk
+- d-bus: dbus, dbus-x11
 
-people who want a easier start to void, or people who dont wanna go through the 2 hours of finnicky setup when installing it again for the 60th time. (also me!!!) (and people who may not know that void has a 14 month backlog of updates!!!)
+# session and seat management
+
+the script walks you through picking one of five session/seat stacks per the void linux handbook:
+
+1. **elogind** — full session management, auto XDG_RUNTIME_DIR, power control. best for: DEs, most wayland compositors, rootless xorg.
+2. **turnstile + elogind** — turnstile manages sessions, elogind handles rundir/power. best for: per-user services, d-bus without dbus-run-session.
+3. **turnstile** — standalone, seatd for seats, acpid for power. best for: minimal setups, wlroots compositors.
+4. **seatd** — minimal seat daemon only. best for: sway, dwl, river — you handle rundir + d-bus yourself.
+5. **manual** — no session manager, DIY XDG_RUNTIME_DIR. best for: purists who know what they're doing.
+
+# who this is for
+
+people who want an easier start to void, or people who dont wanna go through the 2 hours of finnicky setup when installing it again for the 60th time. (also me!!!) (and people who may not know that void has a 14 month backlog of updates!!!)
+
+# usage
+
+```bash
+chmod +x honeybee.sh
+./honeybee.sh              # interactive mode
+./honeybee.sh --quick      # skip confirmation prompts
+./honeybee.sh --seat=elogind   # pre-select a stack
